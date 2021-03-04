@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mf
+  labels:
+    env: prod
+  annotations:
+    imageregistry: "prometheus.io/scrape=true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-kub-14
+          image: nginx
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 40
+          readinessProbe:
+            exec:
+              command:
+                - curl
+                - http://127.0.0.1:80
+            initialDelaySeconds: 10
+            periodSeconds: 10

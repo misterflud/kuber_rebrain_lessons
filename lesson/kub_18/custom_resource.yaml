@@ -1,0 +1,7 @@
+apiVersion: study.rebrainme.com/v1
+kind: Task
+metadata:
+  name: results
+spec:
+  task: kuku
+  result: kukuresult

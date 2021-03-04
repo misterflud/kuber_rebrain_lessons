@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  volumes:
+    - name: yc-pv-storage
+      persistentVolumeClaim:
+        claimName: pvc-html
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: yc-pv-storage
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "100m"

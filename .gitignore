@@ -1,0 +1,7 @@
+/.idea/
+/init_kubernetes_in_yandex_cloud/.terraform/
+/init_kubernetes_in_yandex_cloud/.terraform.lock.hcl
+/init_kubernetes_in_yandex_cloud/terraform.tfstate
+/init_kubernetes_in_yandex_cloud/terraform.tfstate.backup
+/kubectl_resources/
+kuber_lessons.iml

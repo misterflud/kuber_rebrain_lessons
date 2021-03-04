@@ -1,0 +1,10 @@
+{
+  "apiVersion": "v1",
+  "kind": "pods",
+  "metadata": {
+    "labels": {
+      "key1": "api=true",
+      "run": "nginx-pod"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dp-kub-17
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/nginx/
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          env:
+
+            - name: nginx_auth
+              valueFrom:
+                secretKeyRef:
+                  name: nginx-env
+                  key: AUTH
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nginx-conf

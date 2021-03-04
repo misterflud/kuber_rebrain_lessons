@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka-sts
+spec:
+  serviceName: kafka-sts
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: wurstmeister/kafka
+          ports:
+            - name: http1
+              containerPort: 8080
+            - name: http2
+              containerPort: 8080
+          volumeMounts:
+            - name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        storageClassName: yc-network-hdd
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
