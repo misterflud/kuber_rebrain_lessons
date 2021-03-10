@@ -5,3 +5,4 @@
 /init_kubernetes_in_yandex_cloud/terraform.tfstate.backup
 /kubectl_resources/
 kuber_lessons.iml
+private.auto.tfvars

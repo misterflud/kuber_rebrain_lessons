@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-own-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+    # Указываем, каким образом выписывать сертификат
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: test.ingress.rebrainme.com
+      http:
+        paths:
+          - backend:
+              serviceName: svc-internal
+              servicePort: 80

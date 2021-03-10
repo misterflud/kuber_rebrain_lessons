@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-external-kub25
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: nginx-kub25
+  ports:
+    - port: 80
+      targetPort: 80

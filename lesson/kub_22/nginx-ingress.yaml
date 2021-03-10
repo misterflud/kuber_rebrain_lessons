@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+spec:
+  rules:
+    - host: test.ingress.rebrainme.com
+      http:
+        paths:
+          - backend:
+              serviceName: svc-internal
+              servicePort: 80

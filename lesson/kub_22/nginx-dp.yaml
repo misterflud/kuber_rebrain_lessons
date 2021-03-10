@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+#          volumeMounts:
+#            - name: config-volume
+#              mountPath: /etc/nginx/
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+#      volumes:
+#        - name: config-volume
+#          configMap:
+#            name: nginx-conf

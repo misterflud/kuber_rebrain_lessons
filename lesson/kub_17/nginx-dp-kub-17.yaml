@@ -26,7 +26,6 @@ spec:
               memory: "128Mi"
               cpu: "100m"
           env:
-
             - name: nginx_auth
               valueFrom:
                 secretKeyRef:

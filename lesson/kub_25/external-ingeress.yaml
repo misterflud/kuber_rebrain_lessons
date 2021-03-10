@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: external-nginx-ingress-kub25
+  namespace: default
+spec:
+  rules:
+    - host: test.external.ingress.rebrainme.com
+      http:
+        paths:
+          - frontend:
+              serviceName: svc-external-kub25
+              servicePort: 80

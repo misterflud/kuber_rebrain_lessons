@@ -7,27 +7,34 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: kafka
   template:
     metadata:
       labels:
-        app: nginx
+        app: kafka
     spec:
+      terminationGracePeriodSeconds: 3
       containers:
-        - name: nginx
-          image: wurstmeister/kafka
+        - name: kafka
+#          image: kafka -- хак чтобы не заморачиваться с настройками кафки (зоокипером итд)
+          image: nginx
           ports:
             - name: http1
               containerPort: 8080
             - name: http2
               containerPort: 8080
           volumeMounts:
-            - name: data
+            - name: kafka-pvc
+              mountPath: /var/data/
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "300m"
   volumeClaimTemplates:
     - metadata:
-        name: data
+        name: kafka-pvc
       spec:
-        storageClassName: yc-network-hdd
+        storageClassName: yc-network-ssd
         accessModes:
           - ReadWriteOnce
         resources:
