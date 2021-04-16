@@ -8,8 +8,8 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-#  name: {{ $fullName }}
-  name: nginx-ingress
+  name: {{ $fullName }}
+#  name: nginx-ingress
   labels:
     {{- include "helm-project1.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
